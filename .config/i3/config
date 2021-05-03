@@ -1,0 +1,329 @@
+# -------------------------------------------------------------------------------------- #
+#                                      CONFIGURATION                                     #
+# -------------------------------------------------------------------------------------- #
+
+# mod key
+set $mod Mod4
+
+# modifier
+floating_modifier $mod
+
+# direction keys
+set $up    k
+set $down  j
+set $left  h
+set $right l
+
+# workspaces
+set $ws1 "1:Web"
+set $ws2 "2:Code"
+set $ws3 "3:Files"
+set $ws4 "4:Talk"
+set $ws5 "5:Anon"
+set $ws6 "6:Download"
+set $ws7 "7:Chill"
+set $ws8 "8:Info"
+set $ws9 "9:Config"
+set $ws10 "10:Generic"
+
+focus_follows_mouse no
+focus_wrapping no
+
+for_window [class=".*"] border pixel 1
+smart_borders on
+gaps inner 13
+
+# colors
+client.focused			#ddae55 #16181d #d9d9d9 #ddae55 #ddae55 		
+client.focused_inactive		#ddae55 #16181d #d9d9d9 #16181d #16181d 		
+client.unfocused		#ddae55 #16181d #d9d9d9 #16181d #16181d 		
+client.urgent			#ddae55 #16181d #d9d9d9 #d22d3a #d22d3a 		
+client.placeholder		#ddae55 #16181d #d9d9d9 #16181d #16181d 		
+client.background		#16181d
+
+# -------------------------------------------------------------------------------------- #
+#                                        WORKSPACE                                       #
+# -------------------------------------------------------------------------------------- #
+
+# cycle through workspace
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# switching between workspace
+bindsym $mod+Tab workspace back_and_forth
+
+# -------------------------------------------------------------------------------------- #
+#                                        CONTAINER                                       #
+# -------------------------------------------------------------------------------------- #
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# toggle fullscreen
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# split mode
+bindsym $mod+v splitv
+bindsym $mod+g splith
+
+# scratchpad
+bindsym $mod+shift+b move scratchpad
+bindsym $mod+b scratchpad show
+
+# Mark and swap
+bindsym $mod+shift+m mark x
+bindsym $mod+shift+s swap container with mark x
+
+# -------------------------------------------------------------------------------------- #
+#                                          MODES                                         #
+# -------------------------------------------------------------------------------------- #
+
+# resize window
+mode "Resize" {
+        bindsym $left  resize shrink width  3 px or 3 ppt
+        bindsym $down  resize grow   height 3 px or 3 ppt
+        bindsym $up    resize shrink height 3 px or 3 ppt
+        bindsym $right resize grow   width  3 px or 3 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# session
+mode "P - H - S - R - L - K"{
+	bindsym p exec --no-startup-id "$HOME/.config/i3/scripts/shutdown_menu.sh poweroff"
+	bindsym h exec --no-startup-id "$HOME/.config/i3/scripts/shutdown_menu.sh hibernate"
+	bindsym s exec --no-startup-id "$HOME/.config/i3/scripts/shutdown_menu.sh suspend"
+	bindsym r exec --no-startup-id "$HOME/.config/i3/scripts/shutdown_menu.sh reboot"
+	bindsym l exec --no-startup-id "$HOME/.config/i3/scripts/shutdown_menu.sh logout"
+	bindsym k exec --no-startup-id "$HOME/.config/i3/scripts/shutdown_menu.sh lock"
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# swap
+mode "Swap"{
+	# change focus
+	bindsym $left focus left
+	bindsym $down focus down
+	bindsym $up focus up
+	bindsym $right focus right
+
+	# cycle through workspace
+	bindsym $mod+bracketright workspace next
+	bindsym $mod+bracketleft workspace prev
+	
+	# switch to workspace
+	bindsym $mod+1 workspace number $ws1
+	bindsym $mod+2 workspace number $ws2
+	bindsym $mod+3 workspace number $ws3
+	bindsym $mod+4 workspace number $ws4
+	bindsym $mod+5 workspace number $ws5
+	bindsym $mod+6 workspace number $ws6
+	bindsym $mod+7 workspace number $ws7
+	bindsym $mod+8 workspace number $ws8
+	bindsym $mod+9 workspace number $ws9
+	bindsym $mod+0 workspace number $ws10
+
+
+	# mark and swap
+	bindsym m mark x
+	bindsym s swap container with mark x
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+Control+Return mode "Resize"
+bindsym $mod+Shift+Return mode "Swap"
+bindsym $mod+Shift+F12 mode "P - H - S - R - L - K"
+
+# -------------------------------------------------------------------------------------- #
+#                                        AUTOSTART                                       #
+# -------------------------------------------------------------------------------------- #
+# Sync clock
+
+# set wallpaper
+exec_always --no-startup-id feh --bg-scale $HOME/Pictures/4.jpg
+
+# polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# autotiling script
+exec --no-startup-id autotiling
+
+# picom
+exec --no-startup-id picom --experimental-backends
+
+# ibus
+exec --no-startup-id ibus-daemon -drx
+
+# dunst
+exec --no-startup-id dunst
+
+# batsignal
+exec --no-startup-id batsignal -w 20 -c 10 -d 5 -n BAT1
+
+# nm-applet
+exec --no-startup-id nm-applet
+
+# blueman-applet
+exec --no-startup-id blueman-applet
+
+# redshift
+exec --no-startup-id redshift
+
+# polkit
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# application
+exec --no-startup-id firefox-developer-edition
+exec --no-startup-id geary
+
+# -------------------------------------------------------------------------------------- #
+#                                          RULES                                         #
+# -------------------------------------------------------------------------------------- #
+
+##
+### Workspace constraint
+##
+
+# Web
+assign [class="firefox"]                $ws1
+
+# Code
+assign [class="kitty"]                  $ws2
+assign [class="Code"]                   $ws2
+
+# Files
+assign [class="Thunar"]                 $ws3
+
+# Talk
+assign [class="Geary"]                  $ws4
+assign [class="Microsoft Teams"]	$ws4
+
+# Anon
+for_window [title="(Private Browsing)"] move container to workspace $ws5
+
+# Download
+assign [class="qBittorrent"]            $ws6
+assign [class="xdman-Main"]             $ws6
+
+# Chill
+assign [class="calibre"]                $ws7
+assign [class="Lutris"]                 $ws7
+assign [class="Parole"]			$ws7
+assign [class="Steam"]                  $ws7
+assign [class="vlc"]                  	$ws7
+
+# Info
+assign [class="htop"]                   $ws8
+assign [class="auto-cpufreq"]           $ws8
+
+# Generic
+assign [class="Lxappearance"]           $ws9
+assign [class="Blueman-manager"]        $ws9
+assign [class="Nm-connection-editor"]   $ws9
+assign [class="Virt-manager"]		$ws9
+
+##
+### Window constraint
+##
+
+for_window [class="dropdown"] floating enable, sticky enable, \
+move absolute position 160 24, resize set 1600 650
+for_window [class="qBittorrent"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="Virt-manager"] floating enable
+for_window [class="xdman-Main"] floating enable
+
+# -------------------------------------------------------------------------------------- #
+#                                      KEY BINDINGS                                      #
+# -------------------------------------------------------------------------------------- #
+
+# terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindcode $mod+49 exec --no-startup-id /home/isaac/.config/i3/scripts/dropdown_terminal.sh
+
+# rofi
+bindcode $mod+61 exec --no-startup-id "rofi -modi run,drun,window -show drun -run-shell-command"
+bindsym $mod+p exec --no-startup-id rofi -show window
+
+# flameshot
+bindsym Print exec --no-startup-id flameshot full -c -p $HOME/Pictures
+bindsym Control+Print exec --no-startup-id flameshot gui
+
+# volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# brightness control
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+
+# Browser
+bindsym XF86HomePage exec --no-startup-id firefox
+
+# File explorer
+bindsym XF86Explorer exec --no-startup-id thunar
+
+# Email
+bindsym XF86Mail exec --no-startup-id geary
+
+# reload configuration
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace 
+bindsym $mod+Shift+r restart
+
+# exit i3 
+bindsym $mod+Shift+e exec --no-startup-id 'i3-msg exit'
+

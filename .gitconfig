@@ -1,0 +1,13 @@
+[user]
+	name = Isaac Clank
+	email = minimaleffort769@gmail.com
+[init]
+	defaultBranch = main
+[credential]
+	helper = cache --timeout 30000
+[core]
+	editor = code -w
+[advice]
+	addIgnoredFile = false
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset - %s   %C(cyan)<%cr> %C(yellow)%d' --abbrev-commit
