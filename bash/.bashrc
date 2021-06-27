@@ -6,15 +6,11 @@ case $- in
     *) return;;
 esac
 
-# -------------------------------------------------------------------------------------------------------------------- #
-#                                                        BASH IT                                                       #
-# -------------------------------------------------------------------------------------------------------------------- #
 export BASH_IT="/home/isaac/.bash_it"
 
 export BASH_IT_THEME='bobby'
-export THEME_SHOW_CLOCK_CHAR=false
 export THEME_SHOW_CLOCK=false
-export ___BRAINY_TOP_LEFT="dir scm"
+export THEME_SHOW_CLOCK_CHAR=false
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
@@ -78,14 +74,10 @@ export SCM_CHECK=true
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
 
-# -------------------------------------------------------------------------------------------------------------------- #
-#                                                PERSONAL CONFIGURATION                                                #
-# -------------------------------------------------------------------------------------------------------------------- #
-
-export WIN_HOME="/mnt/c/Users/minim"
+# ------- CUSTOMIZATION -------
 
 bind 'TAB':menu-complete
-bind "set show-all-if-ambiguous on"
-bind "set menu-complete-display-prefix on"
+bind 'set show-all-if-ambiguous on'
+bind 'set menu-complete-display-prefix on'
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
