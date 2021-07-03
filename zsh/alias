@@ -1,8 +1,4 @@
-#!/bin/zsh
-
-alias "refresh"="exec zsh"
+alias refresh="exec zsh"
 alias "cd.."="cd .."
-
-alias "k"="k -h --si"
-alias "kn"="k -n"
-alias "kd"="k -d"
+alias cases="gh issue list --assignee @me"
+alias case="gh issue view"

@@ -1,19 +1,29 @@
-# Environment variables
-export ZSH="/home/isaac/.oh-my-zsh"    
-export DOT="/home/isaac/Repos/dotfiles"    
+source /home/isaac/.zplug/init.zsh
 
-# Custom functions
-fpath=(
-  "${DOT}/zsh/functions"
-  "${fpath[@]}"
-)
+zplug "sindresorhus/pure", as:theme
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit; prompt pure
 
-autoload -Uz cheat hint timezsh
+zplug "b4b4r07/zplug-doctor", lazy:yes
+zplug "b4b4r07/zplug-cd", lazy:yes
+zplug "b4b4r07/zplug-rm", lazy:yes
+zplug "plugins/git", from:oh-my-zsh
+zplug "zpm-zsh/ls"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "modules/completion/", from:prezto
 
-# Theme and plugins
-ZSH_THEME="spaceship"
-plugins=(git k zsh-autosuggestions zsh-syntax-highlighting)
+export NVM_LAZY_LOAD=true
+zplug "lukechilds/zsh-nvm"
 
-# Additional file to be sourced
-source $ZSH/oh-my-zsh.sh   
-source "${DOT}/zsh/alias"
+if ! zplug check --verbose; then
+  zplug install
+  echo
+fi
+
+zplug load
+
+alias refresh="exec zsh"
+alias 'cd..'='cd ..'
+alias tasks='gh issue list --assignee @me'
+alias task='gh issue'
