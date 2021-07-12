@@ -1,9 +1,7 @@
 source /home/isaac/.zplug/init.zsh
 
-zplug "sindresorhus/pure", as:theme
-fpath+=$HOME/.zsh/pure
-autoload -U promptinit; promptinit; prompt pure
-
+zplug "mafredri/zsh-async", from:github
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 zplug "b4b4r07/zplug-doctor", lazy:yes
 zplug "b4b4r07/zplug-cd", lazy:yes
 zplug "b4b4r07/zplug-rm", lazy:yes
