@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+find-repo() {
+  firefox --new-tab "github.com/search?q=${@}"
+}

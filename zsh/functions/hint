@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-hint() {
-  curl https://devhints.io/$1 -o /tmp/hint.html && firefox /tmp/hint.html
-}

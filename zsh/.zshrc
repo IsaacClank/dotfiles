@@ -22,3 +22,7 @@ alias refresh="exec zsh"
 alias 'cd..'='cd ..'
 alias tasks='gh issue list --assignee @me'
 alias task='gh issue'
+alias al='autoload'
+alias sens='sensors'
+
+fpath+="$HOME/Repos/dotfiles/zsh/functions"
